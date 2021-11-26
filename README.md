@@ -5,7 +5,7 @@
 Este proyecto nace como una prueba de habilidades técnicas de la que fui partícipe. Al concluir dicha prueba y enviar el resultado obtenido en el tiempo limite, me propuse a mejorarlo e impleméntalo como parte de mi portafolio de proyectos.
 Cabe destacar que **todavía pueden implementarse mejoras** (*por lo que recomiendo leer el archivo de "notas de la versión" para saber mas detalles*) pero cumple con la funcionalidad básica, por lo que decidí subirlo de igual manera
 
-**nota:** se ha creado un nuevo repositorio para esta version, debido a que he tenido algunos inconvenientes tratando de subir el nuevo front-end. si desea ver la primera version de ADN filter, esta disponible en el siguiente enlace: https://github.com/orelcholor/adn-filter en la rama "version-1.0"
+**nota:** se ha creado un nuevo repositorio para esta version, debido a que he tenido algunos inconvenientes tratando de subir el nuevo front-end. si desea ver la primera version de ADN filter, esta disponible en el siguiente enlace: https://github.com/orelcholor/adn-filter/tree/version-1.0
 
 ## ¿De que va este programa?
 ADN-filter es un sistema web en donde se evalúan cadenas de ADN para encontrar mutaciones. Las cadenas de ADN están representadas con las letras A, T, C y G. 
