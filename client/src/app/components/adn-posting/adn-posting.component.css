@@ -1,0 +1,10 @@
+.letra{
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    background-color: white;
+    border: 2px solid black;
+}

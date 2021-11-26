@@ -1,0 +1,42 @@
+.header {
+    background-color: #090b23; /*#0FABBC*/
+  }
+.header h1{
+    margin: 0;
+    text-align: center;
+    font-size: 2rem;
+    font-family: system-ui;
+    color: #FFFFFF;
+    padding: 0.67em 0;
+}
+.header .contenido-header {
+  padding-top: 1rem;
+}
+.header .contenido-header a {
+  font-size: 1.5rem;
+}
+
+.navegacion-principal {
+  background-color: #090b23; /*FA163F*/
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.navegacion-principal a {
+  text-decoration: none;
+  padding: 5px;
+  color: #FFFFFF;
+  font-size: 1rem;
+  text-align: center;
+  font-family: system-ui;
+}
+.navegacion-principal .a1:hover {
+  background: rgb(63,119,255);
+  background: linear-gradient(48deg, rgba(63,119,255,1) 0%, rgba(152,100,216,1) 100%, rgba(253,78,171,1) 100%);
+  transition: color 0.5s ease;
+}
+
+.navegacion-principal .a2:hover{
+  background: rgb(63,119,255);
+  background: linear-gradient(48deg, rgba(63,119,255,1) 0%, rgba(152,100,216,1) 0%, rgba(253,78,171,1) 100%);
+  transition: color 0.5s ease;
+}

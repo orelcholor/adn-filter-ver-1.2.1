@@ -1,0 +1,74 @@
+<div class="container">
+    <!-- ENVIO DE DATOS -->
+    <div id="div1" class="div__form">
+        <div class="div__form-sombreado">
+            <form class="formulario" novalidate [formGroup]="adnForm" (ngSubmit)="onSubmit()">
+                <div class="centrar up">
+                    <h1>Envio de ADN's</h1>
+                    <p>
+                        introduzca una cadena de ADN, separando las mismas con una coma evitando usar espacios.
+                        El algoritmo detectara si existen secuencias (una secuencia son 4 caracteres iguales
+                        verticales, horizontales u oblicuos).
+                    </p>
+                    <br>
+                    <p>Ejemplos de secuencias:</p>
+                    <p> cadena sin secuencias - ATGCGA,CAGTGC,TTATTT,AGACGG,GCGTCA,TCACTG</p>
+                    <p> cadena con 2 secuencias (con mutacion) - ATGCGA,CAGTGC,TTATGT,AGAAGG,CCCCTA,TCACTG</p>
+                    <p> cadena con 1 secuencias (sin mutacion) - ATGCGA,CAGTGC,TTTTTT,AGACGG,GCGTCA,TCACTG</p>
+
+                    <br>
+                </div>
+                <div class="centrar down">
+                    <!-- <input type="text" #chain> -->
+                    <textarea formControlName="adnString" (keyup)="textAreaAdn($event)"></textarea>  
+                    <!-- <input type="button"
+                        (click)="inputArrayConversor(chain.value)"
+                        value="enviar ADN para conversion"
+                    > -->
+                    <button type="submit">Enviar ADN</button>
+                </div>
+            </form>
+            <!-- ***************PREVIEW********************* -->
+            <div class="div__preview" >
+                <div class="preview-sombreado">
+                    <h1>adn-posting:</h1>
+                    <div class="parrafoAdn" *ngFor="let item of textAreaGetAdn; index as i">
+                        <p class="adn-posting__class">
+                            <adn-posting 
+                                [txtareaAdn]="textAreaGetAdn[i]"
+                            ></adn-posting>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONSULTA Y MUESTRA DE DATOS -->
+    <div id="div2" class="div__results" *ngIf="cadenasGet">
+        <h1 class="div__results-titulo">Resultados de la Consulta a la API</h1>
+        <nav class="div__results-nav">
+            <a><button (click)="mostarAdnsApi()">Actualizar datos</button></a>
+        </nav>
+        <div class="result-row">
+            <div class="result" *ngFor="let item of cadenasGet; index as i;">
+                <div class="result-pt1">
+                    <h2>id: {{ cadenasGet[i].id }}</h2>
+                    <h2>mutacion: {{ cadenasGet[i].mutacion }}</h2>
+                </div>
+                <div class="result-pt2">
+                    <div class="result__cadena centrar">
+                        <h3>cadena de ADN:</h3>
+                        <p   class="result__cadena-p"
+                             *ngFor="let item of cadenasGet[i].adn; index as j"
+                        >
+                        <adn-results [arrayAdn]="cadenasGet[i].adn[j]" ></adn-results>
+                         </p>
+                     </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+

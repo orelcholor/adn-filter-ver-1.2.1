@@ -1,0 +1,7 @@
+#backend
+/backend/node_modules
+/backend/.gcloudignore
+/backend/app.yaml
+
+#client
+/client/node_modules

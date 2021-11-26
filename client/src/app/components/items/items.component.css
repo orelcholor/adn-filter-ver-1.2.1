@@ -1,0 +1,155 @@
+/** UTILIDADES **/
+.container {
+    max-width: 100rem;
+    margin: 0 auto;
+    /* display: flex;
+    justify-content: space-around; */
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+}
+.centrar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/***** ENVIO DE DATOS *****/
+/*** FORMULARIO ***/
+.formulario{
+    display: grid;
+    grid-template-rows: 2;
+}
+
+.formulario h1, p{
+    color: white;
+}
+.formulario p{
+    margin: 5px 10px;
+}
+.up{
+    text-align: center;
+}
+.down{
+    padding-bottom: 15px;
+}
+
+.formulario textarea{
+    resize: none;
+    height: 120px;
+    width: 90%;
+    text-align: center;
+    font-size: 30px;
+    text-overflow: ellipsis;
+    margin: 20px 0;
+}
+.div__form{
+    /* display: grid;
+    grid-template-columns: repeat(2, 1fr); */
+    background-color: #0e1032; /*FFFFFF*/ /*6166B3*/
+    padding: 2rem;
+    padding-bottom: 2rem;
+}
+.div__form-sombreado{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* background-color: #ab92b3; E4F9FF */
+    border-radius: 25px;
+    background: rgb(63,119,255);
+    background: linear-gradient(48deg, rgba(63,119,255,1) 0%, rgba(152,100,216,1) 50%, rgba(253,78,171,1) 100%);
+}
+
+/*** PREVIEW DEL TEXTAREA ***/
+.div__preview{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+adn-results{
+    display: flex;
+}
+.adn-posting__class{
+    display: flex;
+    margin: 0;
+}
+adn-posting{
+    display: flex;
+}
+.preview-sombreado{
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    width: 80%;
+    height: 80%;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+}
+/****** CIERRE DEL ENVIO DE DATOS ****/
+
+/*** DESPLIEGUE DE DATOS ***/
+
+/** DIVS PRINCIPAL **/
+.div__results{
+    background-color: #0e1032; /*3F51B5*/
+    padding-top: 1.5rem;
+
+}
+.div__results-titulo{
+    /* background: rgb(254,69,100);
+    background: linear-gradient(48deg, rgba(254,69,100,1) 0%, rgba(152,100,216,1) 50%, rgba(68,241,255,1) 100%); */
+    background-color: #090b23;
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+}
+h1.div__results-titulo{
+    margin: 0;
+}
+.div__results-nav {
+    background-color: #090b23; /*FA163F*/
+    display: flex;
+    justify-content: center;
+  }
+
+/** RESULT (donde se hace el ngfor) **/
+.result-row{
+    display: grid;
+    grid-template-columns: repeat(2,1fr );
+}
+
+.result{
+    display: flex;
+    justify-content: space-around;
+    /* border: 2px solid white; */
+    border-radius: 20px;
+    padding-left: 10px;
+    margin: 10px 1rem;
+    background-color: #fe4564;
+}
+
+/** result-pt1 **/
+.result-pt1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/** result-pt2 **/
+.result__cadena{
+    display: flex;
+    flex-direction: column;
+    padding: 15px 0;
+}
+.result__cadena p{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+}
+.result__cadena h3{
+    padding-right: 15px;
+}
