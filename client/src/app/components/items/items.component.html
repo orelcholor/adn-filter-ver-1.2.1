@@ -2,7 +2,7 @@
     <!-- ENVIO DE DATOS -->
     <div id="div1" class="div__form">
         <div class="div__form-sombreado">
-            <form class="formulario" novalidate [formGroup]="adnForm" (ngSubmit)="onSubmit()">
+            <form class="formulario" [formGroup]="adnForm" (ngSubmit)="onSubmit()">
                 <div class="centrar up">
                     <h1>Envio de ADN's</h1>
                     <p>
@@ -19,6 +19,11 @@
                     <br>
                 </div>
                 <div class="centrar down">
+                    <div>
+                        
+                    </div>
+                    <label for="tamaño">Numero de elementos en la matriz:</label>
+                    <input #tamaño type="text">
                     <!-- <input type="text" #chain> -->
                     <textarea formControlName="adnString" (keyup)="textAreaAdn($event)"></textarea>  
                     <!-- <input type="button"
@@ -31,7 +36,7 @@
             <!-- ***************PREVIEW********************* -->
             <div class="div__preview" >
                 <div class="preview-sombreado">
-                    <h1>adn-posting:</h1>
+                    <h1>Vista previa de la matriz:</h1>
                     <div class="parrafoAdn" *ngFor="let item of textAreaGetAdn; index as i">
                         <p class="adn-posting__class">
                             <adn-posting 

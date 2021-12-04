@@ -8,22 +8,25 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./adn-results.component.css']
 })
 export class AdnResultsComponent implements OnInit {
-  
+  //para resultados de consulta
   @Input() arrayAdn: Array<string> = [];
-  // @Input() formulario: boolean = false;
   public adnDivided: Array<string> = [];
+  public adnDivided2: Array<string> = [];
+
+  //para el preview del textarea
+  // @Input() txtareaAdn: string ='';
+
   constructor() {
    
   }
-
+  /*** para resultados de consulta ***/
   ngOnInit(): void {
-    //console.log('._.XD' + this.arrayAdn)
+    // console.log(this.txtareaAdn + '._.XD')
     this.fromString();
-    // this.getForm()
   }
-
   fromString(){
     this.adnDivided = Array.from(this.arrayAdn);
+    // this.adnDivided2 = Array.from(this.txtareaAdn);
     //console.log(this.adnDivided);
   }
 
@@ -31,5 +34,7 @@ export class AdnResultsComponent implements OnInit {
   //   console.log(this.formulario);
   // }
   
+  /*** Para preview  del textarea */
+
 
 }

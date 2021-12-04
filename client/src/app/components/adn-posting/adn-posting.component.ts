@@ -14,16 +14,16 @@ export class AdnPostingComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log('lo que recibo: ' +this.txtareaAdn);
+    //console.log('lo que recibo: ' +this.txtareaAdn);
     this.txtareaString()
   }
 
   txtareaString(){
-    let xd = this.txtareaAdn;
+    //let xd = this.txtareaAdn;
     // xd = this.txtareaAdn.toString();
-    console.log(typeof(xd));
-    this.adnDivided = Array.from(xd);
-    console.log('este es adndividido: '+this.adnDivided);
+    //console.log(typeof(xd));
+    this.adnDivided = Array.from(this.txtareaAdn);
+    //console.log('este es adndividido: '+this.adnDivided);
   }
 
 }
