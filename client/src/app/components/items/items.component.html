@@ -2,7 +2,7 @@
     <!-- ENVIO DE DATOS -->
     <div id="div1" class="div__form">
         <div class="div__form-sombreado">
-            <form class="formulario" [formGroup]="adnForm" (ngSubmit)="onSubmit()">
+            <form class="formulario" [formGroup]="adnForm" (ngSubmit)="onSubmitManual()">
                 <div class="centrar up">
                     <h1>Envio de ADN's</h1>
                     <p>
@@ -25,7 +25,14 @@
                     <label for="tamaño">Numero de elementos en la matriz:</label>
                     <input #tamaño type="text">
                     <!-- <input type="text" #chain> -->
-                    <textarea formControlName="adnString" (keyup)="textAreaAdn($event)"></textarea>  
+                    <textarea 
+                        formControlName="adnString" 
+                        (keydown)="capturaTecla($event)" 
+                        (ngModelChange)="textareaForm2($event)"
+                        oninput="this.value = this.value.toUpperCase()"
+                    ></textarea>  
+                    <!-- (keyup)="capturaTecla($event)" -->
+                    <!-- (ngModelChange)="textareaForm2($event)" -->
                     <!-- <input type="button"
                         (click)="inputArrayConversor(chain.value)"
                         value="enviar ADN para conversion"
