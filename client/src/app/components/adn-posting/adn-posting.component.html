@@ -1,5 +1,12 @@
-<div class="fila"  *ngFor="let item of adnDivided; index as i">
-    <div class="letra">
-        {{adnDivided[i]}}
-    </div>
+<div #fila class="fila"  *ngFor="let item of adnDivided; index as i">
+    <input 
+        type="text"
+        #inputLetra
+        [ngClass]="'letra' + i"
+        value="{{adnDivided[i]}}"
+        oninput="this.value = this.value.toUpperCase()"
+        [maxLength]="1"
+        (click)="onClickLetra(i)"
+        (blur)="onBlurLetra(i)"
+    >
 </div>

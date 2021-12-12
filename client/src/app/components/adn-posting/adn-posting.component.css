@@ -1,10 +1,25 @@
-.letra{
+.fila input{
     color: black;
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
+    text-align: center;
     height: 50px;
     width: 50px;
     background-color: white;
     border: 2px solid black;
+    transition-property: width, height;
+    /* transition-delay: .1s; */
+    transition-duration: .2s;
+}
+
+.fila input:hover{
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+}
+.fila{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
