@@ -17,6 +17,16 @@
 }
 
 /***** ENVIO DE DATOS *****/
+
+.div__form-sombreado{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* background-color: #ab92b3; E4F9FF */
+    border-radius: 25px;
+    background: rgb(63,119,255);
+    background: linear-gradient(48deg, rgba(63,119,255,1) 0%, rgba(152,100,216,1) 50%, rgba(253,78,171,1) 100%);
+}
+
 /*** FORMULARIO ***/
 .formulario{
     display: grid;
@@ -36,6 +46,13 @@
     padding-bottom: 15px;
 }
 
+/* .opciones-input{
+
+}
+.opciones-input button{
+    
+} */
+
 .formulario textarea{
     resize: none;
     height: 120px;
@@ -52,14 +69,7 @@
     padding: 2rem;
     padding-bottom: 2rem;
 }
-.div__form-sombreado{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    /* background-color: #ab92b3; E4F9FF */
-    border-radius: 25px;
-    background: rgb(63,119,255);
-    background: linear-gradient(48deg, rgba(63,119,255,1) 0%, rgba(152,100,216,1) 50%, rgba(253,78,171,1) 100%);
-}
+
 
 /*** PREVIEW DEL TEXTAREA ***/
 .div__preview{
@@ -70,12 +80,10 @@
 adn-results{
     display: flex;
 }
-.adn-posting__class{
-    display: flex;
-    margin: 0;
-}
+
 adn-posting{
     display: flex;
+    margin: 0;
 }
 .preview-sombreado{
     display: flex;

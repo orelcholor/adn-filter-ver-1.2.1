@@ -19,11 +19,12 @@
                     <br>
                 </div>
                 <div class="centrar down">
-                    <div>
-                        
-                    </div>
-                    <label for="tamaño">Numero de elementos en la matriz:</label>
-                    <input #tamaño type="text">
+                    <!-- <div class="opciones_input">
+                        <button>Ingresar manualmente</button>
+                        <button>pegar una cadena de ADN</button>
+                    </div> -->
+                    <!-- <label for="tamaño">Numero de elementos en la matriz:</label>
+                    <input #tamaño type="text"> -->
                     <!-- <input type="text" #chain> -->
                     <textarea 
                         formControlName="adnString" 
@@ -44,12 +45,14 @@
             <div class="div__preview" >
                 <div class="preview-sombreado">
                     <h1>Vista previa de la matriz:</h1>
-                    <div class="parrafoAdn" *ngFor="let item of textAreaGetAdn; index as i">
-                        <p class="adn-posting__class">
-                            <adn-posting 
-                                [txtareaAdn]="textAreaGetAdn[i]"
-                            ></adn-posting>
-                        </p>
+                    <div class="filaAdn" *ngFor="let item of textAreaGetAdn; index as i">
+                        <adn-posting
+                            (keydown)="capturaTecla($event)" 
+                            [txtareaAdn]="textAreaGetAdn[i]"
+                            [numFila]="''+i"
+                            [arrayCompleto] = "textAreaGetAdn"
+                            (envioArray)="ActualizarAdn($event)"
+                        ></adn-posting>
                     </div>
                 </div>
             </div>

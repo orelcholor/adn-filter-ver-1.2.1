@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { FormControl, FormGroup} from '@angular/forms';
 import { DataDbService } from 'src/app/services/data-db.service';
 
@@ -26,6 +26,13 @@ export class ItemsComponent implements OnInit {
   public textAreaGetAdn: Array<string>;//cadena de ADN del textarea en forma de array
   public textAreaContainer: string;//elementos de la cadena en forma de string
   public binding: string;//Captura del elemento tecleado
+
+  /*** variable para la validavion de comal al pegar elementos en textarea */
+  public validacionPegado: boolean = false;
+
+  //@ViewChild("TA") TA!: ElementRef;
+
+  mensaje: any = 'sin nada que hacer';
 
   constructor(
     private _DataDbService: DataDbService
@@ -59,7 +66,6 @@ export class ItemsComponent implements OnInit {
           let xd = this.cadenasGet[i].adn;
           this.cadenasGetAdn.push(xd);
         }
-        console.log( typeof(this.cadenasGetAdn))
       },
       error =>{
         console.log(<any>error);
@@ -93,7 +99,8 @@ export class ItemsComponent implements OnInit {
     //validacion de formulario vacio (necesario para cuando limpiamos el formulario)
     if(event != null){
       //validacion de "0 comas" para evitar errores en textAreaGetAdn
-      if(this.val_Comas(event)){
+      //tambien se validan que no marque error por las comas cuando pegamos contenido
+      if(this.val_Comas(event) && this.validacionPegado == false){
         alert('Ingrese solamente valores de bases nitrogenadas validas (A, T, C, G)')
       }else{
         let itemAdn = event;
@@ -109,14 +116,9 @@ export class ItemsComponent implements OnInit {
             //generamos la fila de la matriz (recordemos que cada fila es un item del array textAreaGetAdn)
             if(itemAdn.length == 6){
               itemAdn += ",";
-              //console.log(itemAdn);
               this.textAreaContainer += itemAdn.substr(-1);
-              //console.log(this.textAreaContainer)
-              // // console.log("el largo del item es" +itemAdn.length);
-              // // console.log(itemAdn)
               this.textAreaGetAdn = this.textAreaContainer.split(',');
               this.textAreaGetAdn.pop();
-              console.log(this.textAreaGetAdn);
               this.limpiarFormulario();
             }
             break;
@@ -125,6 +127,20 @@ export class ItemsComponent implements OnInit {
             this.textAreaContainer = this.textAreaContainer.substring(0, this.textAreaContainer.length - 1);
             this.textAreaGetAdn = this.textAreaContainer.split(',');
             break;
+          case 'pegado':
+            //verificamos la lingitud para ver si es una cadena completa
+            if(event.length == 41){
+              this.textAreaContainer = event;
+              this.textAreaGetAdn = this.textAreaContainer.split(',');
+              // console.log(this.textAreaGetAdn);
+              this.validacionPegado = false;
+            }else{
+              alert('el valor a pegar debe ser la cadena completa separada por comas');
+              this.limpiarFormulario();
+              this.textAreaContainer = '';
+              this.textAreaGetAdn = this.textAreaContainer.split(',');
+            }
+            break;
         }
       }
     }else{
@@ -132,10 +148,11 @@ export class ItemsComponent implements OnInit {
     }
   }
 
-
-  capturaTecla(event: KeyboardEvent){
+  /*** Validamos la interaccion del usuario con el teclado */
+  public capturaTecla(event: KeyboardEvent){
     let i =  event.key;
     let response = ""
+    //valores validos
     switch (i) {
       case 'a': case 'A':
       case 't': case 'T':
@@ -145,34 +162,29 @@ export class ItemsComponent implements OnInit {
         response = 'letra'
         //console.log('se apreto ATCG')
         break;
+    //para cuando borramos elementos
     case 'Backspace':
       response = 'borrar'
       break;
     default:
-      event.preventDefault();
-      response = 'nada'
+      //para cuando presionamos ctrl + v
+      if((event.ctrlKey || event.metaKey) && (event.key == 'v' || event.key == 'V')){
+        //console.log('CTRL +  V');
+        this.validacionPegado = true;
+        response = 'pegado';
+      }else{
+        //console.log(event.key);
+        event.preventDefault();
+        response = 'nada'
+      }
       break;
     }
     this.binding = response;
-    //console.log(this.binding);
-    //console.log('variable ltimaLetra: '+this.ultimaLetra);
-    // if(event.key == 'Backspace'){
-    //   console.log('presionaste borrar');
-    //   return true;
-    // }
-    // else{
-    //   return false;
-    // } 
   }
 
   //submit
   onSubmitManual(){
     this.cadenasPost= new Cadena(this.textAreaGetAdn);
-    // let xd: any = '';
-    // xd =this.adnForm.value;
-    // //console.log(JSON.stringify(this.cadenasPost));
-    // this.cadenasPost= new Cadena(xd.adnString.split(','))
-    //hacemos el post en la linea siguiente
     this._DataDbService.addAdnApi(this.cadenasPost).subscribe(data =>{
       //console.log('se realizo el post parece ' + this.cadenasPost);
       alert('Se ha enviado la cadena de ADN a revision');
@@ -182,19 +194,13 @@ export class ItemsComponent implements OnInit {
     })
   }
 
-  onSubmitPasted(){
-    let xd =this.adnForm.value;
-    this.cadenasPost= new Cadena(xd.adnString.split(','))
-    // let xd: any = '';
-    // xd =this.adnForm.value;
-    // //console.log(JSON.stringify(this.cadenasPost));
-    // this.cadenasPost= new Cadena(xd.adnString.split(','))
-    //hacemos el post en la linea siguiente
-    this._DataDbService.addAdnApi(this.cadenasPost).subscribe(data =>{
-      //console.log('se realizo el post parece ' + this.cadenasPost);
-      alert('Se ha enviado la cadena de ADN a revision');
-      this.mostarAdnsApi();
-    })
+
+  /*** Actalizacion de array realizada desde el preview */
+  ActualizarAdn(e: any){
+    //console.log(e);
+    this.textAreaGetAdn[e.fila] = e.nuevaFila;
+    this.mensaje = this.textAreaGetAdn;
+    //console.log(this.textAreaGetAdn);
   }
   /*
     ATGCGA,CAGTGC,TTATTT,AGACGG,GCGTCA,TCACTG - sin secuencias
